@@ -4,8 +4,8 @@
     Bytes can be concatenated using the + operator.
 */
 
-export const concat = (n1:bytes,n2:bytes) : bytes =>
-    K.todo("Should return concat n1 and n2");
+export const concat = (b1:bytes, b2:bytes) : bytes =>
+    Bytes.concat(b1, b2);
 
 /*
     Bytes can be sliced using a built-in function bytes.sub which takes three parameters:
@@ -14,15 +14,15 @@ export const concat = (n1:bytes,n2:bytes) : bytes =>
     - the bytes being sliced
 */
 
-export const first = (n: bytes) : bytes =>
-    K.todo("Should return The first byte of n");
+export const first = (b: bytes) : bytes =>
+    Bytes.sub(0 as nat, 1 as nat, b);
 
 /*
     The length of a bytes can be found using a built-in function bytes.length
 */
 
-export const length = (n1: bytes) : nat =>
-    K.todo("Should return The length of n1");
+export const length = (b: bytes) : nat =>
+    Bytes.length(b);
 
 /*
     References: 

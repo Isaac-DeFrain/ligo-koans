@@ -23,11 +23,11 @@ const stone : play = Stone();
 export type coin = 
     | ["Heads"] | ["Tails"];
 
-export const new_heads = (): coin => 
-    K.todo("Should return a heads data");
+export const new_heads = () : coin => 
+    Heads();
 
-export const new_tails = (): coin => 
-    K.todo("Should return a tails data");
+export const new_tails = () : coin => 
+    Tails();
 
 /*
     Pattern matching is similar to the switch construct in JavaScript, and can be used 
@@ -44,7 +44,7 @@ export const new_tails = (): coin =>
     control structure.
 */
 
-export const is_paper = (p:play): bool => {
+export const is_paper = (p: play) : bool => {
     match(p, {
         Paper: () => true,
         Scissor: () => false,
@@ -62,9 +62,12 @@ export const is_paper = (p:play): bool => {
     a Tails it returns a Heads and vice-versa.
 */
 
-export const flip_coin = (c:coin): coin => {
-    K.todo("Should return a flipped coin. Heads should be transformed to Tails and Tails should be transformed to Heads.");
-};    
+export const flip_coin = (c: coin) : coin => {
+    match(c, {
+        Heads: () => Tails(),
+        Tails: () => Heads()
+    });
+};
 
 /*
     The previous variants are equivalent to the enumerated types found in Java, C++, JavaScript etc. because each data constructor
@@ -75,8 +78,8 @@ export const flip_coin = (c:coin): coin => {
     For instance a point can be expressed thanks to its absissa and ordinate or thanks to its radius and angles.
 */
 
-type coordinate = { absissa : int, ordinate: int};
-type polar = { radius: int, angle: int};
+type coordinate = { absissa: int, ordinate: int };
+type polar = { radius: int, angle: int };
 
 type point = | ["Coordinate", coordinate] | ["Polar", polar];
 
@@ -84,12 +87,12 @@ type point = | ["Coordinate", coordinate] | ["Polar", polar];
     Then the pattern matching recognize and deconstruct data in order to retrieve intrnale values.
 */
 
-export const is_coordinate = (p:point): bool => {
-    match(p,{
-        Coordinate: _c => true, // p can be used as usual since it's a record,
-        Polar: _p => false, // p can be used as usual since it's a record,
-    });
-};
+// export const is_coordinate = (p: point) : bool => {
+//     match(p, {
+//         Coordinate: _c => true, // p can be used as usual since it's a record,
+//         Polar: _p => false // p can be used as usual since it's a record,
+//     });
+// };
 
 /*
     Back to the `coin` we can elaborate a simple game. For this purpose we define first 
@@ -97,7 +100,7 @@ export const is_coordinate = (p:point): bool => {
 */
 
 type game = { heads: nat, tails: nat };
-type flip = ((u:unit) => coin);
+type flip = ((u: unit) => coin);
 
 /* 
     Define a type variant with Play containing a flip function and a Reset. Then after
@@ -107,8 +110,16 @@ type flip = ((u:unit) => coin);
 
 export type turn = | ["Play", flip] | ["Reset"];
 
-export const play = (t:turn,g:game): game => {
-    K.todo("Should return a new game reflecting the turn played.");
+export const play = (t: turn, g: game) : game => {
+    match(t, {
+        Play: (flip: flip) => {
+            match(flip(), {
+                Heads: () => ({ ...g, heads: g.heads + (1 as nat) }),
+                Tails: () => ({ ...g, tails: g.tails + (1 as nat) })
+            });
+        },
+        Reset: () => ({ heads: 0 as nat, tails: 0 as nat })
+    });
 };
 
 /*

@@ -11,24 +11,35 @@ const b: bool = false;
     Comparing values
 */
 
-const compare_string = (s1:string,s2:string): bool => {
-    K.todo("Should compare two strings");
+const compare_string = (s1:string, s2:string): bool => {
+    s1 == s2;
 };
     
-const boolean_and = (b1:bool,b2:bool): bool => {
-    K.todo("Should return the boolean and of b1, b2 ");
+const boolean_and = (b1:bool, b2:bool): bool => {
+    b1 && b2;
 };
      
-const boolean_or = (b1:bool,b2:bool): bool => {
-    K.todo("Should return the boolean or of b1, b2");
+const boolean_or = (b1:bool, b2:bool): bool => {
+    b1 || b2;
 };
 
 /*
     Conditional selection
 */
 
-const selection = (i1:int,i2:int): string => {
-    K.todo("Should return a string denoting the comparison i.e. 'i1 < i2' or 'i1 = i2' or 'i1 > i2'");
+const selection = (i1:int, i2:int): string => {
+    let ret = "";
+    switch ([i1 <= i2, i1 == i2]) {
+        case [true, false]:
+            ret = "i1 < i2";
+            break;
+        case [true, true]:
+            ret = "i1 = i2";
+            break;
+        default:
+            ret = "i1 > i2"
+    };
+    return ret;
 };
 
 /*

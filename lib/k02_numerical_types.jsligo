@@ -18,44 +18,44 @@
     apply, for example you cannot add a value of type tez to a value of type nat.
 */
 
-export const add_int = (n1:int,n2:int) : int =>
-    K.todo("Should add two integers");
+export const add_int = (n1:int, n2:int) : int =>
+    n1 + n2;
 
-export const add_int_and_nat = (n1:int,n2:nat) : int =>
-    K.todo("Should add an integer and a natural");
+export const add_int_and_nat = (n1:int, n2:nat) : int =>
+    n1 + int(n2);
 
-export const add_nat = (n1:nat,n2:nat) : nat =>
-    K.todo("Should add two naturals");
+export const add_nat = (n1:nat, n2:nat) : nat =>
+    n1 + n2;
 
-export const add_tez = (n1:tez,n2:tez) : tez =>
-    K.todo("Should add two tez values");
+export const add_tez = (n1:tez, n2:tez) : tez =>
+    n1 + n2;
 
 /*
     Subtractions follow the same principles. 
     Warning: when subtracting two nats, the result is an int
 */
 
-export const substract_int = (n1:int,n2:int) : int =>
-    K.todo("Should substract two integers");
+export const substract_int = (n1:int, n2:int) : int =>
+    n1 - n2;
 
-export const substract_int_and_nat = (n1:int,n2:nat) : int =>
-    K.todo("Should substract and integer and a nat");
+export const substract_int_and_nat = (n1:int, n2:nat) : int =>
+    n1 - int(n2);
 
-export const substract_nat = (n1:nat,n2:nat) : int =>
-    K.todo("Should substract two naturals");
+export const substract_nat = (n1:nat, n2:nat) : int =>
+    n1 - n2;
 
-export const substract_tez = (n1:tez,n2:tez) : tez =>
-    K.todo("Should substract two tez values");
+export const substract_tez = (n1:tez, n2:tez) : option<tez> =>
+    n1 - n2;
 
 /*
     Numerical conversion can be done from int to nat and vice versa
 */
 
-export const int_from_nat = (n1:nat) : int =>
-    K.todo("Should cast a nat to an int");
+export const int_from_nat = (n:nat) : int =>
+    int(n);
 
-export const nat_from_int = (n1:int) : nat =>
-    K.todo("Should cast an int to a nat");
+export const nat_from_int = (n:int) : nat =>
+    abs(n);
 
 /*
     Reference: https://ligolang.org/docs/language-basics/math-numbers-tez

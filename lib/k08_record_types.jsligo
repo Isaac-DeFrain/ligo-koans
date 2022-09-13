@@ -6,19 +6,19 @@
 */
 
 type account_data = {
-  balance: tez,
-  transactions: nat
+    balance: tez,
+    transactions: nat
 };
 
 export let account = () : account_data => {
-  K.todo("Should return an account data with a balance of 5 tez and 3 transactions");
+    return ({ balance: 5 as tez, transactions: 3 as nat });
 };
 
 /*
   If we want the contents of a given field, we use the (.) infix operator
 */
 
-const balance : tez = (account()).balance;
+// const balance : tez = (account()).balance;
 
 /*
   Given a record value, it is a common design pattern to update only a small number of its fields. 
@@ -30,9 +30,9 @@ const balance : tez = (account()).balance;
   Reference; https://ligolang.org/docs/language-basics/maps-records#functional-updates
 */
 
-export contents modify_account = (account: account_data) : account_data => {
-  K.todo("Should return an account data with 5 transactions");
-}
+export const modify_account = (account: account_data) : account_data => {
+    return ({ ...account, transactions: 5 as nat });
+};
 
 /*
   Reference: https://ligolang.org/docs/language-basics/maps-records
